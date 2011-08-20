@@ -9,3 +9,11 @@ Description:
 
    This extension allows to mark individual items as read in Google Reader by checking their own checkboxes. Its really
    useful to avoid mark as read bulk items and lost some important post.
+   
+How to install it:
+
+   1. Download CRX file called 'MarkAsRead.crx'
+   2. Open a new tab
+   3. Drag your recently downloaded CRX file to the new tab
+   4. Accept
+   5. Reload your Google Reader view. When you switched to 'List mode', you will see new buttons to use the extension.

@@ -1,0 +1,19 @@
+{
+  "name": "Mark as read",
+  "version": "1.0",
+  "description": "To mark as read individual items on GReader",
+  "background_page": "background.html",
+  "page_action": {
+    "default_icon": "icon.png",
+    "default_title": "Mark As Read for Google Reader"
+  },
+  "permissions":  [
+    "tabs", "http://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["http://www.google.es/reader/*","http://www.google.com/reader/*"],
+      "js": ["mark.js"]
+    }
+  ]
+}
