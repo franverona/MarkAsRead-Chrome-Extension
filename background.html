@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <script>
+      // Called when the url of a tab changes.
+      function checkForValidUrl(tabId, changeInfo, tab) {
+		var gr_exp = /google.*\/reader/;
+        // If the user is viewing GReader
+        if (gr_exp.test(tab.url)) {
+          // show the page action.
+          chrome.pageAction.show(tabId);
+        }
+      }
+
+      // Listen for any changes to the URL of any tab.
+      chrome.tabs.onUpdated.addListener(checkForValidUrl);
+    </script>
+  </head>
+</html>
