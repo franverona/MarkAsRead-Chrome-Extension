@@ -1,24 +1,47 @@
+// ==UserScript==
+// @name          Google Reader - Mark Selected Items as Read
+// @version       2.1
+// @namespace     http://twitter.com/franverona
+// @description   This script adds the button "Mark selected as read" and a checkbox for each item.
+// @author        Fran Verona (adapted for new Google Reader and Google Chrome from Dmitry Rodiontsev original script)
+// @include       htt*://www.google.tld/reader/view/*
+// ==/UserScript==
 
 /*
-   Mark As Read for Google Reader (Chrome Extension)
-   @author  franverona (adapted from Greasemonkey script developed by Dmity Rodiontsev)
-   @version 1.0
+Version history
+
+1.0 on 20/08/2011:
+    - Initial version.
+	
+2.0 on 12/08/2012:
+	- Adapted to new Google Chrome extension API.
+	- Modified to work with the new Google Reader interface.
+	
+2.1 on 15/08/2012:
+	- Browser's language
+	
+2.2 on 24/08/2012:
+	- Support for Google Reader ES and EN
+
 */
 
-/*
-
-   Version history:
-      Agoust 2011 - Extension created and also added "Invert selection" button
-
-*/
-
-var buttonText = "Mark as Read";
+var buttonText = "Mark as read";
 var buttonId = "mark-selected-as-read";
 var articles = new Array();
 
-var buttonTextInv = "Invert Selection";
+var buttonTextInv = "Invert selection";
 var buttonIdInv = "invert-select";
 var articlesInv = new Array();
+
+var userLang = (navigator.language) ? navigator.language : navigator.userLanguage;
+
+if(userLang == "es"){
+	buttonText = "Marcar como leido";
+	buttonTextInv = "Invertir seleccion";
+}
+
+document.getElementById('settings-button-container').style.minWidth = '24px';
+document.getElementById('item-up-down-buttons').style.display = 'none';
 
 document.addEventListener("DOMNodeInserted", function(event){
    nodeInserted(event);
@@ -65,7 +88,7 @@ function appendButton() {
       button.innerHTML = "<div class=\"goog-button-base-outer-box goog-inline-block\">"
       + "<div class=\"goog-button-base-inner-box goog-inline-block\">"
       + "<div class=\"goog-button-base-pos\">"
-      + "<div class=\"goog-button-base-top-shadow\">&nbsp;</div>"
+      //+ "<div class=\"goog-button-base-top-shadow\">&nbsp;</div>"
       + "<div class=\"goog-button-base-content\">"
       + "<div class=\"goog-button-body\">" + buttonText + "</div>"
       + "</div>"
@@ -81,7 +104,7 @@ function appendButton() {
       buttonInv.innerHTML = "<div class=\"goog-button-base-outer-box goog-inline-block\">"
       + "<div class=\"goog-button-base-inner-box goog-inline-block\">"
       + "<div class=\"goog-button-base-pos\">"
-      + "<div class=\"goog-button-base-top-shadow\">&nbsp;</div>"
+      //+ "<div class=\"goog-button-base-top-shadow\">&nbsp;</div>"
       + "<div class=\"goog-button-base-content\">"
       + "<div class=\"goog-button-body\">" + buttonTextInv + "</div>"
       + "</div>"
